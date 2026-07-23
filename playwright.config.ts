@@ -6,8 +6,9 @@ import { defineConfig, devices } from '@playwright/test';
  *   ENVIRONMENT=http://uitestingplayground.com/ LOGIN=Viktor PASSWORD=pwd WRONG_PASSWORD=pwd123 HEADLESS=false npx playwright test
  */
 export default defineConfig({
+  workers: 1,
   testDir: './tests',
-  fullyParallel: true,
+  fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   reporter: 'html',

@@ -4,11 +4,7 @@ import { SampleAppPage } from '../pages/sampleAppPage';
 import { ProgressBarPage } from '../pages/progressBarPage';
 import { FileUploadPage } from '../pages/fileUploadPage';
 
-/**
- * Equivalent of the C# project's BaseTest + TestContext.Parameters:
- * exposes a `params` fixture for the login/password parameters, and
- * `loadMainPage` / `loadPage` helpers mirroring BaseTest's methods.
- */
+
 export type TestParams = {
   login: string;
   password: string;
@@ -41,7 +37,7 @@ export const test = base.extend<Fixtures>({
 
   loadPage: async ({ page }: { page: Page }, use) => {
     const clickLinkByText = async (linkText: string) => {
-      await page.getByRole('link', { name: linkText }).click();
+      await page.getByRole('link', { name: linkText, exact: true }).click();
     };
     const isPageLoaded = async (headerText: string) => {
       await expect(page.locator(Locators.headerTag)).toHaveText(headerText);
